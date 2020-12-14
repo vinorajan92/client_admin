@@ -34,11 +34,13 @@ const config: webpack.Configuration = {
   output: {
     path: path.resolve(__dirname, "build"),
     filename: "bundle.js",
+    sourceMapFilename: 'bundle.js.map'
   },
+  devtool: "source-map",
   devServer: {
     contentBase: path.join(__dirname, "build"),
     compress: false,
-    port: 4000,
+    port: 4000
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin({

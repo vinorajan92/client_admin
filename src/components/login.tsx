@@ -12,7 +12,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {loginUser} from '../services/login'
+import {LoginUser} from '../actions/auth';
+import {connect} from 'react-redux';
 
 function Copyright() {
   return (
@@ -47,14 +48,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Login() {
+
+const Login = (props:any) =>{
   const classes = useStyles();
   const [details, setDetails] = useState({username:'', password:''});
   const submitHandler = (e:any) => {
       e.preventDefault();
-      loginUser(details).then((res)=>{
-          console.log(res)
-      })
+      props.LoginUser(details);
   }
   return (
     <Container component="main" maxWidth="xs">
@@ -127,3 +127,5 @@ export default function Login() {
     </Container>
   );
 }
+
+export default connect(null, {LoginUser})(Login)

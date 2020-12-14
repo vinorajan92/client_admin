@@ -1,21 +1,33 @@
 import React from "react";
 import Login from './components/login';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Dashboard from './components/dashboard';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { connect } from "react-redux";
+import {getLoggedStatus} from './actions/auth'
 
-const App = () => (
-    <Router>
-      <div>
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/">
-            <Dashboard />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
+class Main extends React.Component<any,any>{
+  constructor(props:any){
+    super(props);
+    props.getLoggedStatus();
+  }
+  render(){
+    if(this.props.auth.isLoggedIn){
+      return (
+        <Router>
+          <Dashboard />
+        </Router>
+      )
+      }else{
+        return <Login />
+      }
+  }
+}
+
+const mapStateToProps = (state:any) => {
+  return { auth: state.auth };
+};
+
+
+const App = connect(mapStateToProps, {getLoggedStatus})(Main);
 
 export default App;

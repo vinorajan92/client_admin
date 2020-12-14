@@ -21,6 +21,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems } from './listItems';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Orders from './orders';
+import Product from './product';
 
 function Copyright() {
   return (
@@ -172,6 +173,9 @@ export default function Dashboard() {
           <Grid container spacing={3}>
             <Route path="/orders">
               <Orders />
+            </Route>
+            <Route exact path="/">
+              <Product />
             </Route>
           </Grid>
           <Box pt={4}>
