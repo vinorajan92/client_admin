@@ -2,7 +2,7 @@ import axiosInstance from '../interceptors/headers';
 
 export const LoginUser = (user) => async dispatch => {
     dispatch({type:'LOGGING_IN'})
-    axiosInstance.post(`http://localhost:9000/api/login`,{...user}).then(json => {
+    axiosInstance.post(`http://${location.hostname}:9000/api/login`,{...user}).then(json => {
         dispatch({ type: "LOGGED_IN", payload: json.data.token });
     });
 }
@@ -14,7 +14,7 @@ export const getLoggedStatus = () => async dispatch => {
         payload.token = authToken;
         payload.isLoggedIn = true;
     }
-    axiosInstance.get(`http://localhost:9000/api/users`).then(json => {
+    axiosInstance.get(`http://${location.hostname}:9000/api/users`).then(json => {
         console.log(json);
     });
     dispatch({ type: "GET_LOGGED_STATUS", payload});
