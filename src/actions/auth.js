@@ -14,8 +14,5 @@ export const getLoggedStatus = () => async dispatch => {
         payload.token = authToken;
         payload.isLoggedIn = true;
     }
-    axiosInstance.get(`http://${location.hostname}:9000/api/users`).then(json => {
-        console.log(json);
-    });
     dispatch({ type: "GET_LOGGED_STATUS", payload});
 }
