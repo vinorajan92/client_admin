@@ -1,6 +1,6 @@
 FROM node:10-alpine
 WORKDIR /app
 COPY package.json ./package.json
-RUN npm install --only=prod
+RUN npm install
 COPY . ./
-CMD ["npm", "run", "build"]
+RUN npm run build
