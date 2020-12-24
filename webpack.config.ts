@@ -33,7 +33,7 @@ const config: webpack.Configuration = {
   },
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: "bundle.js",
+    filename: "[name].[contenthash].js",
     sourceMapFilename: 'bundle.js.map'
   },
   devtool: "source-map",
