@@ -1,8 +1,9 @@
 import axiosInstance from '../interceptors/headers';
+import {getUrl, LOGIN_URL} from '../config';
 
 export const LoginUser = (user) => async dispatch => {
     dispatch({type:'LOGGING_IN'})
-    axiosInstance.post(`http://${location.hostname}:9000/api/login`,{...user}).then(json => {
+    axiosInstance.post(getUrl(LOGIN_URL),{...user}).then(json => {
         dispatch({ type: "LOGGED_IN", payload: json.data.token });
     });
 }
